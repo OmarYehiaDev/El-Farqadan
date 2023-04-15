@@ -56,6 +56,12 @@ class _MainScreenState extends State<MainScreen> {
               //TODO: Impl. Screens
               if (subject.isAvailable) {
                 log("${subject.name}'s data is available");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => subject.screen,
+                  ),
+                );
               } else {
                 Fluttertoast.showToast(
                   msg: "This subject isn't available yet :\"(",
