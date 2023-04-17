@@ -14,7 +14,7 @@ class Constants {
     "Ahmed M. Ibn El Khattab",
     "Mohamed A. Ezzelregal",
     "Amany G. Gomaa",
-    "Omar Yehia Tawfeek",
+    "Omar Y. Tawfeek",
     "Habiba M. Mahmoud",
     "Noha F. Hassan",
     "Manar A. Moahmed",

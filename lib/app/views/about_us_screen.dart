@@ -2,6 +2,7 @@ import 'package:elfarqadan_app/app/config/constants.dart';
 import 'package:elfarqadan_app/app/config/helpers/assets_manager.dart';
 import 'package:elfarqadan_app/app/config/helpers/context_helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutTeamScreen extends StatefulWidget {
   const AboutTeamScreen({super.key});
@@ -11,6 +12,14 @@ class AboutTeamScreen extends StatefulWidget {
 }
 
 class _AboutTeamScreenState extends State<AboutTeamScreen> {
+  Future<void> launchIntent(bool isPhone) async {
+    final Uri phoneURI = Uri.parse("tel:${Constants().teamPhone}");
+    final Uri mailURI = Uri.parse("mailto:${Constants().teamMail}");
+    if (!await launchUrl(isPhone ? phoneURI : mailURI)) {
+      throw Exception('Could not launch');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,11 +171,13 @@ class _AboutTeamScreenState extends State<AboutTeamScreen> {
               ),
               itemBuilder: (_, index) {
                 String member = Constants().members[index];
-                return Text(
-                  member,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 15,
+                return Center(
+                  child: Text(
+                    member,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
                   ),
                 );
               },
@@ -174,6 +185,46 @@ class _AboutTeamScreenState extends State<AboutTeamScreen> {
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               padding: const EdgeInsets.all(16),
+            ),
+
+            // SizedBox(
+            //   height: context.height * 0.015,
+            // ),
+            const Text(
+              "How to reach out?",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.start,
+            ),
+            ListTile(
+              leading: const Icon(Icons.mail_outline),
+              minLeadingWidth: 20,
+              title: Text(
+                Constants().teamMail,
+                style: const TextStyle(
+                  fontSize: 15,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () async => await launchIntent(false),
+                icon: const Icon(
+                  Icons.message,
+                  color: Colors.blueGrey,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.smartphone),
+              title: Text(Constants().teamPhone),
+              trailing: IconButton(
+                onPressed: () async => await launchIntent(true),
+                icon: const Icon(
+                  Icons.call,
+                  color: Colors.blueGrey,
+                ),
+              ),
             ),
           ],
         ),
