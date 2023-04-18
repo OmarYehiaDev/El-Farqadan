@@ -214,7 +214,7 @@ class _DifferentiationCalculatorState extends State<DifferentiationCalculator> {
             Text(
               resEquation +
                   (selectedTo.index == 2 && resEquation.isNotEmpty
-                      ? " m/s^2"
+                      ? " m/s²"
                       : selectedTo.index == 1 && resEquation.isNotEmpty
                           ? " m/s"
                           : ""),

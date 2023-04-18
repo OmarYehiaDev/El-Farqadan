@@ -1,6 +1,8 @@
 import 'package:elfarqadan_app/app/config/helpers/context_helpers.dart';
 import 'package:elfarqadan_app/app/views/orbital/widgets/angular_calc.dart';
 import 'package:elfarqadan_app/app/views/orbital/widgets/derivative_calc.dart';
+import 'package:elfarqadan_app/app/views/orbital/widgets/newton_laws_calc.dart';
+import 'package:elfarqadan_app/app/views/orbital/widgets/simple_vector_calc.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/enums.dart';
@@ -78,6 +80,7 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
             VectorCalculator(operation: Operation.sub),
             VectorCalculator(operation: Operation.cross),
             VectorCalculator(operation: Operation.dot),
+            SimpleVectorCalculator(),
             Align(
               alignment: AlignmentDirectional.topStart,
               child: Padding(
@@ -91,6 +94,7 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
                 ),
               ),
             ),
+            NewtonLawsCalculator(),
             AngularCalculator(),
             DifferentiationCalculator(),
             SizedBox(

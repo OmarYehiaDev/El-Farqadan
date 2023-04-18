@@ -34,7 +34,7 @@ class _VectorCalculatorState extends State<VectorCalculator> {
     }
   }
 
-  void calcResult<T extends Vector>(vecA, T vecB) {
+  void calcResult<T extends Vector>(vecA, vecB) {
     switch (widget.operation) {
       case Operation.add:
         setState(() {

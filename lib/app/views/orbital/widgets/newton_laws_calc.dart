@@ -1,26 +1,23 @@
-
 import 'package:elfarqadan_app/app/config/helpers/context_helpers.dart';
 import 'package:flutter/material.dart';
 
-class AngularCalculator extends StatefulWidget {
-  const AngularCalculator({super.key});
+class NewtonLawsCalculator extends StatefulWidget {
+  const NewtonLawsCalculator({super.key});
 
   @override
-  State<AngularCalculator> createState() => _AngularCalculatorState();
+  State<NewtonLawsCalculator> createState() => _NewtonLawsCalculatorState();
 }
 
-class _AngularCalculatorState extends State<AngularCalculator> {
-  TextEditingController velocityCtrl = TextEditingController();
-  TextEditingController radiusCtrl = TextEditingController();
-  String angularVelocity = "";
-  String angularAcceleration = "";
+class _NewtonLawsCalculatorState extends State<NewtonLawsCalculator> {
+  TextEditingController massCtrl = TextEditingController();
+  TextEditingController accelerationCtrl = TextEditingController();
+  String resultantForce = "";
 
   void setToInitial() {
     setState(() {
-      velocityCtrl.clear();
-      radiusCtrl.clear();
-      angularVelocity = "";
-      angularAcceleration = "";
+      massCtrl.clear();
+      accelerationCtrl.clear();
+      resultantForce = "";
     });
   }
 
@@ -28,7 +25,7 @@ class _AngularCalculatorState extends State<AngularCalculator> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text("Let's calculate angular velocity & angular acceleration"),
+        const Text("Let's play with Force as per Newton's laws"),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0).add(
             const EdgeInsets.only(top: 8),
@@ -39,12 +36,13 @@ class _AngularCalculatorState extends State<AngularCalculator> {
             children: [
               OutlinedButton(
                 onPressed: () {
-                  if (velocityCtrl.text.isNotEmpty && radiusCtrl.text.isNotEmpty) {
-                    double velocity = double.parse(velocityCtrl.text);
-                    double radius = double.parse(radiusCtrl.text);
+                  if (massCtrl.text.isNotEmpty &&
+                      accelerationCtrl.text.isNotEmpty &&
+                      double.parse(massCtrl.text) > 0) {
+                    double acceleration = double.parse(accelerationCtrl.text);
+                    double mass = double.parse(massCtrl.text);
                     setState(() {
-                      angularVelocity = (velocity / radius).toStringAsFixed(2);
-                      angularAcceleration = ((velocity * velocity) / radius).toStringAsFixed(2);
+                      resultantForce = (mass * acceleration).toStringAsFixed(2);
                     });
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -67,10 +65,10 @@ class _AngularCalculatorState extends State<AngularCalculator> {
               SizedBox(
                 width: context.width * 0.35,
                 child: TextFormField(
-                  controller: velocityCtrl,
+                  controller: massCtrl,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    hintText: "Velocity",
+                    hintText: "Mass",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -80,10 +78,10 @@ class _AngularCalculatorState extends State<AngularCalculator> {
               SizedBox(
                 width: context.width * 0.35,
                 child: TextFormField(
-                  controller: radiusCtrl,
+                  controller: accelerationCtrl,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    hintText: "Radius",
+                    hintText: "Acceleration",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -99,27 +97,30 @@ class _AngularCalculatorState extends State<AngularCalculator> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              if (velocityCtrl.text.isNotEmpty &&
-                  radiusCtrl.text.isNotEmpty &&
-                  angularAcceleration.isNotEmpty &&
-                  angularVelocity.isNotEmpty)
+              if (massCtrl.text.isNotEmpty &&
+                  accelerationCtrl.text.isNotEmpty &&
+                  resultantForce.isNotEmpty)
                 IconButton(
                   onPressed: () {
                     setToInitial();
                   },
                   icon: const Icon(Icons.clear),
                 ),
-              Text(
-                "Angular Velocity (ω)\n$angularVelocity s⁻¹",
+              const Text(
+                "Resultant Force (F):",
                 textAlign: TextAlign.center,
               ),
               Text(
-                "Angular Acceleration (α)\n$angularAcceleration s⁻²",
+                "$resultantForce N",
                 textAlign: TextAlign.center,
               ),
             ],
           ),
         ),
+        if (resultantForce.isNotEmpty)
+          Text(
+            "And to clear the force you must apply F' = ${double.parse(resultantForce).isNegative ? double.parse(resultantForce).abs() : -double.parse(resultantForce)} N",
+          ),
         Padding(
           padding: const EdgeInsets.all(16),
           child: Divider(
