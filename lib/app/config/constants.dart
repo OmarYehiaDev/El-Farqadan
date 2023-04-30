@@ -11,16 +11,23 @@ class Constants {
   String goal =
       "The goal of Al-Farqadan is: Reaching our great Egypt to the highest ranks of Nations and bringing about a societal renaissance by teaching ourselves and our peers students good and useful science and applying that science in practical applications and applying it that benefits the country and individuals.";
   List<String> members = [
-    "Ahmed M. Ibn El Khattab",
     "Mohamed A. Ezzelregal",
-    "Amany G. Gomaa",
+    "Ahmed M. Ibn ElKhattab",
+    "Amany G. Roby",
     "Omar Y. Tawfeek",
+    "Alaa-Eldin M. Alaa-Eldin",
     "Habiba M. Mahmoud",
     "Noha F. Hassan",
     "Manar A. Moahmed",
     "Nada M. Farouk",
   ];
   List<Subject> subjects = [
+    Subject(
+      name: "Orbital Mechanics",
+      icon: AssetsManager.orbital,
+      screen: const OrbitalScreen(),
+      isAvailable: true,
+    ),
     Subject(
       name: "Astronautics",
       icon: AssetsManager.astronautics,
@@ -37,12 +44,6 @@ class Constants {
       screen: const SizedBox(),
     ),
     Subject(
-      name: "Orbital Mechanics",
-      icon: AssetsManager.orbital,
-      screen: const OrbitalScreen(),
-      isAvailable: true,
-    ),
-    Subject(
       name: "Mathematics",
       icon: AssetsManager.maths,
       screen: const SizedBox(),
@@ -55,6 +56,16 @@ class Constants {
     Subject(
       name: "Thermodynamics",
       icon: AssetsManager.thermodynamics,
+      screen: const SizedBox(),
+    ),
+    Subject(
+      name: "Space Technology",
+      icon: AssetsManager.rocket,
+      screen: const SizedBox(),
+    ),
+    Subject(
+      name: "Skills",
+      icon: AssetsManager.skills,
       screen: const SizedBox(),
     ),
   ];

@@ -171,12 +171,22 @@ class _AboutTeamScreenState extends State<AboutTeamScreen> {
               ),
               itemBuilder: (_, index) {
                 String member = Constants().members[index];
-                return Center(
-                  child: Text(
-                    member,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 15,
+                return Align(
+                  alignment: AlignmentDirectional.center,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      bottom: index == 1
+                          ? 32.0
+                          : index == 0 || index == 2
+                              ? 8
+                              : 0,
+                    ),
+                    child: Text(
+                      member,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 15,
+                      ),
                     ),
                   ),
                 );

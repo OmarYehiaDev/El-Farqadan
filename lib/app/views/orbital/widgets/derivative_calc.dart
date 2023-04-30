@@ -40,7 +40,7 @@ class _DifferentiationCalculatorState extends State<DifferentiationCalculator> {
           mainAxisSize: MainAxisSize.max,
           children: [
             SizedBox(
-              width: context.width * 0.3,
+              width: context.width * 0.35,
               child: DropdownButton<Quantity>(
                 alignment: Alignment.center,
                 value: selectedFrom,
@@ -103,7 +103,7 @@ class _DifferentiationCalculatorState extends State<DifferentiationCalculator> {
           children: [
             const Text("Differentiate to"),
             SizedBox(
-              width: context.width * 0.3,
+              width: context.width * 0.35,
               child: DropdownButton<Quantity>(
                 alignment: Alignment.center,
                 value: selectedTo,

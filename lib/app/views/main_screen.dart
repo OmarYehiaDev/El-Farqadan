@@ -1,11 +1,13 @@
 import 'dart:developer';
 
+import 'package:elfarqadan_app/app/components/coming_soon_screen.dart';
 import 'package:elfarqadan_app/app/config/constants.dart';
 import 'package:elfarqadan_app/app/config/helpers/context_helpers.dart';
 import 'package:elfarqadan_app/app/views/about_us_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 
 import '../models/subject_model.dart';
 
@@ -17,6 +19,18 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  @override
+  void initState() {
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        log("REMOVING SPLASHSCREEN");
+        FlutterNativeSplash.remove();
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,13 +77,19 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 );
               } else {
-                Fluttertoast.showToast(
-                  msg: "This subject isn't available yet :\"(",
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.CENTER,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 20.0,
+                // Fluttertoast.showToast(
+                //   msg: "This subject isn't available yet :\"(",
+                //   toastLength: Toast.LENGTH_SHORT,
+                //   gravity: ToastGravity.CENTER,
+                //   backgroundColor: Colors.red,
+                //   textColor: Colors.white,
+                //   fontSize: 20.0,
+                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ComingSoonScreen(),
+                  ),
                 );
               }
             },

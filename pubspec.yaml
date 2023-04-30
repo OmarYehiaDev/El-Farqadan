@@ -16,7 +16,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 0.0.1+1
+version: 0.0.2+2
 
 environment:
   sdk: ">=2.19.6 <3.0.0"
@@ -38,6 +38,8 @@ dependencies:
   url_launcher: ^6.1.10
   vector_math: ^2.1.4
   math_expressions: ^2.4.0
+  lottie: ^2.3.2
+  flutter_native_splash: ^2.2.19
 
 dev_dependencies:
   flutter_test:
@@ -55,7 +57,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icons/logo.png"
+  image_path: "assets/icons/png/logo.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: false
@@ -63,6 +65,13 @@ flutter_icons:
     generate: false
   macos:
     generate: false
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: "assets/icons/png/logo.png"
+  android_12:
+    color: "#FFFFFF"
+    image: "assets/icons/png/logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -78,6 +87,8 @@ flutter:
   assets:
     - assets/
     - assets/icons/
+    - assets/icons/json/
+    - assets/icons/png/
     - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

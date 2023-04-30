@@ -41,8 +41,8 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Align(
+          children: [
+            const Align(
               alignment: AlignmentDirectional.topStart,
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 16, top: 16),
@@ -55,7 +55,7 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: Text(
                 "Orbital Mechanics or Astrodynamics is the application of Ballistics and Celestial Mechanics to the practical problems concerning the motion of rockets and other spacecrafts.",
@@ -63,7 +63,7 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
                 style: TextStyle(fontSize: 20),
               ),
             ),
-            Align(
+            const Align(
               alignment: AlignmentDirectional.topStart,
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16),
@@ -76,12 +76,12 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
                 ),
               ),
             ),
-            VectorCalculator(operation: Operation.add),
-            VectorCalculator(operation: Operation.sub),
-            VectorCalculator(operation: Operation.cross),
-            VectorCalculator(operation: Operation.dot),
-            SimpleVectorCalculator(),
-            Align(
+            const VectorCalculator(operation: Operation.add),
+            const VectorCalculator(operation: Operation.sub),
+            const VectorCalculator(operation: Operation.cross),
+            const VectorCalculator(operation: Operation.dot),
+            const SimpleVectorCalculator(),
+            const Align(
               alignment: AlignmentDirectional.topStart,
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16),
@@ -94,12 +94,54 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
                 ),
               ),
             ),
-            NewtonLawsCalculator(),
-            AngularCalculator(),
-            DifferentiationCalculator(),
-            SizedBox(
-              height: 16,
-            )
+            const NewtonLawsCalculator(),
+            const AngularCalculator(),
+            const DifferentiationCalculator(),
+            const Align(
+              alignment: AlignmentDirectional.center,
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16),
+                child: Text(
+                  "Now, let's talk a moment to adore\nthe work done here by our great \nDean: Prof. Osama M. Shalabia",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset(AssetsManager.profOsama),
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                children: const [
+                  Text(
+                    "This elaborate work would not have come to light except under the guidance of a great man. We all extend our thanks, appreciation and gratitude on behalf of ourselves and on behalf of everyone who is passionate about astronomy and space sciences to Professor Osama M. Shalabia, Leader & Dean of faculty of Navigation Sciences and Space Technology.",
+                    textAlign: TextAlign.justify,
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    "Thank you, Our leader. Thank you, Prof. Osama",
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
