@@ -35,11 +35,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Constants.lightColor,
         title: const Text(
           "Al Farqadan | الفرقدان",
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
+            color: Constants.darkColor,
           ),
         ),
         centerTitle: true,

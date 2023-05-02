@@ -1,13 +1,11 @@
+import 'package:elfarqadan_app/app/components/coming_soon_screen.dart';
 import 'package:elfarqadan_app/app/config/helpers/context_helpers.dart';
-import 'package:elfarqadan_app/app/views/orbital/widgets/angular_calc.dart';
-import 'package:elfarqadan_app/app/views/orbital/widgets/derivative_calc.dart';
-import 'package:elfarqadan_app/app/views/orbital/widgets/newton_laws_calc.dart';
-import 'package:elfarqadan_app/app/views/orbital/widgets/simple_vector_calc.dart';
+import 'package:elfarqadan_app/app/views/orbital/views/advanced_screen.dart';
+import 'package:elfarqadan_app/app/views/orbital/views/vectors_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../config/enums.dart';
 import '../../config/helpers/assets_manager.dart';
-import 'widgets/vector_calc.dart';
+import 'widgets/subtopic_tile.dart';
 
 class OrbitalScreen extends StatefulWidget {
   const OrbitalScreen({super.key});
@@ -76,11 +74,17 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
                 ),
               ),
             ),
-            const VectorCalculator(operation: Operation.add),
-            const VectorCalculator(operation: Operation.sub),
-            const VectorCalculator(operation: Operation.cross),
-            const VectorCalculator(operation: Operation.dot),
-            const SimpleVectorCalculator(),
+            SubTopicTile(
+              title: "Vectors",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const VectorsScreen(),
+                  ),
+                );
+              },
+            ),
             const Align(
               alignment: AlignmentDirectional.topStart,
               child: Padding(
@@ -94,9 +98,65 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
                 ),
               ),
             ),
-            const NewtonLawsCalculator(),
-            const AngularCalculator(),
-            const DifferentiationCalculator(),
+            SubTopicTile(
+              title: "Advanced Calculations",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const AdvancedScreen(),
+                  ),
+                );
+              },
+            ),
+            const Align(
+              alignment: AlignmentDirectional.topStart,
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16),
+                child: Text(
+                  "Let's see some materials!",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            SubTopicTile(
+              title: "Subject Materials",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ComingSoonScreen(),
+                  ),
+                );
+              },
+            ),
+            const Align(
+              alignment: AlignmentDirectional.topStart,
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(start: 16, top: 16, bottom: 16),
+                child: Text(
+                  "Let's see our own projects",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            SubTopicTile(
+              title: "Projects",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ComingSoonScreen(),
+                  ),
+                );
+              },
+            ),
             const Align(
               alignment: AlignmentDirectional.center,
               child: Padding(

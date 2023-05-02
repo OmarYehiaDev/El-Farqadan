@@ -4,8 +4,10 @@ import '../models/subject_model.dart';
 import '../config/helpers/assets_manager.dart';
 
 class Constants {
+  static const Color darkColor = Color(0xFF000046);
+  static const Color lightColor = Color(0xFF90C9D6);
   String teamPhone = "+201065189050";
-  String teamMail = "Farkadanalfarqdan@gmail.com";
+  String teamMail = "Al.Farqadan.Team.com@gmail.com";
   String vision =
       "Al-Farqadan’s vision is: Achieving the Sustainable Development Goals (Egypt Vision 2030); to support Egypt’s efforts towards achieving a comprehensive development goals for a sustainable and successful educational sector throughout The Republic by providing a stimulating climate for the localization and knowledge production of our fellow students.";
   String goal =

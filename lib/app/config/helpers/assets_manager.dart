@@ -8,7 +8,7 @@ class AssetsManager {
   ///
   /// PNG
   static const String profOsama = "$_imagePath/prof-osama.jpg";
-  static const String logo = "$_pngIconsPath/logo.png";
+  static const String logo = "$_pngIconsPath/new-logo.png";
   static const String nsst = "$_pngIconsPath/nsst.png";
   static const String aerodyanmics = "$_pngIconsPath/aero.png";
   static const String maths = "$_pngIconsPath/maths.png";
