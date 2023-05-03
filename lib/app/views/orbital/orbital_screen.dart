@@ -5,7 +5,9 @@ import 'package:elfarqadan_app/app/views/orbital/views/vectors_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/helpers/assets_manager.dart';
-import 'widgets/subtopic_tile.dart';
+import '../../models/sub_subject_model.dart';
+import '../../models/subject_model.dart';
+import '../../components/subtopic_tile.dart';
 
 class OrbitalScreen extends StatefulWidget {
   const OrbitalScreen({super.key});
@@ -15,6 +17,34 @@ class OrbitalScreen extends StatefulWidget {
 }
 
 class _OrbitalScreenState extends State<OrbitalScreen> {
+  final Subject subject = Subject(
+    name: "Orbital Mechanics",
+    icon: AssetsManager.orbital,
+    screen: const OrbitalScreen(),
+    isAvailable: true,
+    subSubjects: [
+      SubSubject(
+        name: "Vectors",
+        screen: const VectorsScreen(),
+        isAvailable: true,
+      ),
+      SubSubject(
+        name: "Advanced Calculations",
+        screen: const AdvancedScreen(),
+        isAvailable: true,
+      ),
+      SubSubject(
+        name: "Subject Materials",
+        screen: const SizedBox(),
+        isAvailable: false,
+      ),
+      SubSubject(
+        name: "Projects",
+        screen: const SizedBox(),
+        isAvailable: false,
+      ),
+    ],
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +54,13 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
         title: Row(
           children: [
             Image.asset(
-              AssetsManager.orbital,
+              subject.icon,
               width: context.width * 0.2,
             ),
             const SizedBox(
               width: 16,
             ),
-            const Text("Orbital Mechanics"),
+            Text(subject.name),
           ],
         ),
         centerTitle: true,
@@ -75,12 +105,12 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
               ),
             ),
             SubTopicTile(
-              title: "Vectors",
+              title: subject.subSubjects[0].name,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const VectorsScreen(),
+                    builder: (_) => subject.subSubjects[0].screen,
                   ),
                 );
               },
@@ -99,12 +129,12 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
               ),
             ),
             SubTopicTile(
-              title: "Advanced Calculations",
+              title: subject.subSubjects[1].name,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const AdvancedScreen(),
+                    builder: (_) => subject.subSubjects[1].screen,
                   ),
                 );
               },
@@ -123,12 +153,14 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
               ),
             ),
             SubTopicTile(
-              title: "Subject Materials",
+              title: subject.subSubjects[2].name,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const ComingSoonScreen(),
+                    builder: (_) => subject.subSubjects[2].isAvailable
+                        ? subject.subSubjects[2].screen
+                        : const ComingSoonScreen(),
                   ),
                 );
               },
@@ -147,12 +179,14 @@ class _OrbitalScreenState extends State<OrbitalScreen> {
               ),
             ),
             SubTopicTile(
-              title: "Projects",
+              title: subject.subSubjects[3].name,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const ComingSoonScreen(),
+                    builder: (_) => subject.subSubjects[3].isAvailable
+                        ? subject.subSubjects[3].screen
+                        : const ComingSoonScreen(),
                   ),
                 );
               },
