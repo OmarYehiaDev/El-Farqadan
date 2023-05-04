@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elfarqadan_app/app/components/read_pdf_online.dart';
 import 'package:elfarqadan_app/app/models/research_model.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,19 @@ class ResearchPapersScreen extends StatefulWidget {
 }
 
 class _ResearchPapersScreenState extends State<ResearchPapersScreen> {
+  final CollectionReference researchesRef = FirebaseFirestore.instance.collection("researches");
+  Future<List<Research>> getResearches() async {
+    var query = await researchesRef.orderBy("name").get();
+    List<QueryDocumentSnapshot<dynamic>> rawData = query.docs;
+    return rawData
+        .map(
+          (e) => Research.fromJson(
+            e.data(),
+          ),
+        )
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,23 +46,43 @@ class _ResearchPapersScreenState extends State<ResearchPapersScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 32, bottom: 16),
-        child: ListView.builder(
-          itemBuilder: (_, index) {
-            Research research = Constants().researches[index];
-            return TargetCard(
-              name: research.name,
-              author: research.author.isEmpty ? null : research.author,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => ReadPdfOnline(fileURL: Constants.linkPrefix + research.docID),
-                  ),
-                );
-              },
+        child: StreamBuilder<List<Research>>(
+          stream: getResearches().asStream(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                  snapshot.error.toString(),
+                ),
+              );
+            }
+            if (snapshot.hasData && snapshot.data != null) {
+              List<Research> researches = snapshot.data!;
+              return ListView.builder(
+                itemBuilder: (_, index) {
+                  Research research = researches[index];
+                  return TargetCard(
+                    name: research.name,
+                    author: research.author.isEmpty ? null : research.author,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ReadPdfOnline(fileURL: research.url),
+                        ),
+                      );
+                    },
+                  );
+                },
+                itemCount: researches.length,
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Constants.darkColor,
+              ),
             );
           },
-          itemCount: Constants().researches.length,
         ),
       ),
     );

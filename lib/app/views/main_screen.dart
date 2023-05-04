@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:elfarqadan_app/app/components/coming_soon_screen.dart';
+// import 'package:elfarqadan_app/app/components/read_pdf_online.dart';
 import 'package:elfarqadan_app/app/config/constants.dart';
 import 'package:elfarqadan_app/app/config/helpers/context_helpers.dart';
 import 'package:elfarqadan_app/app/views/about_us_screen.dart';
@@ -46,6 +47,20 @@ class _MainScreenState extends State<MainScreen> {
         ),
         centerTitle: true,
         actions: [
+          // IconButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (_) => ReadPdfOnline(
+          //           fileURL:
+          //               "https://firebasestorage.googleapis.com/v0/b/al-farqadan-app.appspot.com/o/The%20Effect%20Of%20Space%20Environment%20on%20Satellite%20Systems.pdf?alt=media",
+          //         ),
+          //       ),
+          //     );
+          //   },
+          //   icon: Icon(CupertinoIcons.book),
+          // ),
           IconButton(
             onPressed: () {
               log("About Team");

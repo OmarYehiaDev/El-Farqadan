@@ -41,6 +41,8 @@ dependencies:
   lottie: ^2.3.2
   flutter_native_splash: ^2.2.19
   syncfusion_flutter_pdfviewer: ^21.1.41
+  firebase_core: ^2.10.0
+  cloud_firestore: ^4.5.3
 
 dev_dependencies:
   flutter_test:
